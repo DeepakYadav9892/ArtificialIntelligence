@@ -24,7 +24,7 @@ graph = {
 
 
 
-######## Code explanation line by line 
+######## Code explanation line by line ###########################################################################
 
 
 🔹 Explanation (Line by Line):
@@ -69,4 +69,7 @@ This mimics the order of recursive DFS.
 if neighbor not in visited: stack.append(neighbor)
 
 If neighbor isn’t visited, push onto the stack.
+
+
+
 
