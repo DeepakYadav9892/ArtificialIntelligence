@@ -43,7 +43,7 @@ class Node:
     def add_neighbor(self, neighbor, cost):
         self.neighbors.append((neighbor, cost))
 
-def ida_star(start, goal):
+def ida_star(start, goal):      ##scope restrict function which only called from outer function ida_star() to inner search function .
     def search(path, g, threshold):
         node = path[-1]
         f = g + node.h
