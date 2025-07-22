@@ -1,15 +1,17 @@
-N = 4  # Number of queens and size of the chess board (4x4)
+# N-Queens Problem Solution for N = 4 using Backtracking
 
-# Function to print the solution board
+N = 4  # Size of the board and number of queens
+
+# Function to print the board
 def printSolution(board):
     for i in range(N):
         for j in range(N):
             print(board[i][j], end=" ")
         print()
 
-# Utility function to check if placing a queen at (row, col) is safe
+# Function to check if placing a queen at board[row][col] is safe
 def isSafe(board, row, col):
-    # Check the row on the left
+    # Check this row on the left
     for i in range(col):
         if board[row][i] == 1:
             return False
@@ -26,35 +28,42 @@ def isSafe(board, row, col):
 
     return True
 
-# Recursive function to solve N Queen problem
+# Recursive function to solve N-Queens problem
 def solveNQUtil(board, col):
-    # Base Case: If all queens are placed
+    # Base case: If all queens are placed
     if col >= N:
         return True
 
-    # Try placing queen in all rows one by one
+    # Try placing this queen in all rows one by one
     for i in range(N):
         if isSafe(board, i, col):
-            board[i][col] = 1  # Place queen
+            # Place the queen
+            board[i][col] = 1
 
-            # Recur to place rest of the queens
+            # Recur to place the rest of the queens
             if solveNQUtil(board, col + 1):
                 return True
 
-            board[i][col] = 0  # Backtrack if placing queen doesn't lead to solution
+            # If placing queen doesn't lead to a solution, BACKTRACK
+            board[i][col] = 0
 
-    return False  # No place found in this column
+    # If queen cannot be placed in any row in this column
+    return False
 
-# Main function
+# Main function to solve the N-Queens problem
 def solveNQ():
-    board = [[0] * N for _ in range(N)]  # Create 4x4 board with all 0
+    # Create a 4x4 board initialized with 0
+    board = [[0 for _ in range(N)] for _ in range(N)]
 
+    # Solve using backtracking
     if not solveNQUtil(board, 0):
         print("Solution does not exist")
         return False
 
+    # If solution exists, print it
+    print("One of the valid solutions:")
     printSolution(board)
     return True
 
-# Run the N-Queens solution
+# Run the N-Queens solver
 solveNQ()
